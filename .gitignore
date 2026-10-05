@@ -1,0 +1,6 @@
+config.toml
+skip_pruner.log
+skips.json
+venv
+.DS_Store
+.spotify_cache

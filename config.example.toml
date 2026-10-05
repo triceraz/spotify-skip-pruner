@@ -1,0 +1,38 @@
+# Copy this file to config.toml and fill in your own values.
+# config.toml is in .gitignore so your secrets are never committed.
+#
+# Playlist IDs: in Spotify, right click a playlist > Share > Copy link.
+# The link looks like https://open.spotify.com/playlist/<ID>?si=...
+# Copy only the <ID> part.
+
+[spotify]
+# Create an app at https://developer.spotify.com/dashboard
+# Add this exact redirect URI in the app settings.
+client_id = "PASTE_CLIENT_ID"
+client_secret = "PASTE_CLIENT_SECRET"
+redirect_uri = "http://127.0.0.1:8888/callback"
+
+[settings]
+poll_interval_seconds = 3          # how often to check while music is playing
+idle_poll_interval_seconds = 30    # how often to check when nothing is playing
+count_back_button = false          # true: pressing back also counts as a skip
+dry_run = true                     # true: only log what would be removed. Set to false when happy.
+
+# Defaults, used by any playlist that does not set its own value
+default_played_threshold_percent = 90   # leaving a song before this % counts as a skip
+default_window_days = 30                # only skips newer than this are counted
+
+[archive]
+enabled = true
+playlist_id = "PASTE_ARCHIVE_PLAYLIST_ID"  # create an empty playlist for this first
+retention_days = 90                        # songs older than this are deleted from the archive
+
+# One [[playlists]] block per playlist you want to prune.
+# Copy the block to add more.
+
+[[playlists]]
+name = "Gym"                       # only used in logs
+id = "PASTE_PLAYLIST_ID"
+skips_before_removal = 5           # song is removed when it reaches this many skips in the window
+# played_threshold_percent = 80    # optional, overrides the default above
+# window_days = 60                 # optional, overrides the default above
